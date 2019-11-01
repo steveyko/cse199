@@ -1,3 +1,7 @@
+//!
+//! This prints out at-risk students according to the thresholds set below.
+//!
+
 use std::error::Error;
 use std::io;
 

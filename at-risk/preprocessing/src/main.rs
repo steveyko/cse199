@@ -1,3 +1,8 @@
+//! This cleans up the CSV header of a UBlearns CSV file.
+//!
+//! For example, "Total [Total Pts: up to 191.7 Score] |1263507" becomes "Total"
+//!
+
 use std::io::{self, BufReader, BufRead};
 
 fn main() {
@@ -14,7 +19,7 @@ fn main() {
     }
     while let Some(n) = input.find('|') {
         // +8 for seven digits
-        input.drain(n..(n+8));
+        input.drain(n..(n + 8));
     }
     input = input.trim().to_string();
     println!("{}", input);
