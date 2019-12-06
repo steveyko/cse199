@@ -3,14 +3,14 @@
 //! For example, "Total [Total Pts: up to 191.7 Score] |1263507" becomes "Total"
 //!
 
-use std::io::{self, BufReader, BufRead};
+use std::io::{self, BufRead, BufReader};
 
 fn main() {
     let mut bf = BufReader::new(io::stdin());
 
     let mut input = String::new();
     let _n = bf.read_line(&mut input);
-    
+
     while let Some(n) = input.find('[') {
         if let Some(m) = input.find(']') {
             // -1 for a whitespace, +2 for ']' and a whitespace
@@ -27,6 +27,6 @@ fn main() {
     for line in bf.lines() {
         if let Ok(input) = line {
             println!("{}", input);
-        } 
+        }
     }
 }

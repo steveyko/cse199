@@ -9,8 +9,10 @@ const LAST_NAME: &str = "Last Name";
 const FIRST_NAME: &str = "First Name";
 const TOTAL: &str = "Total";
 const ATTENDANCE: &str = "TH-Attendance";
-const TOTAL_THRESHOLD: f32 = 10.0; // 10 or less
-const ATTENDANCE_THRESHOLD: f32 = 5.0; // 5 or less (9 is the max)
+//const TOTAL_THRESHOLD: f32 = 10.0; // 10 or less
+//const ATTENDANCE_THRESHOLD: f32 = 5.0; // 5 or less (9 is the max)
+const TOTAL_THRESHOLD: f32 = 50.0; // 10 or less
+const ATTENDANCE_THRESHOLD: f32 = 9.0; // 5 or less (9 is the max)
 
 struct HeaderIndex {
     last_name: usize,
