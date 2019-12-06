@@ -152,8 +152,11 @@ fn main() -> Result<(), Box<dyn Error>> {
 
         let grade = Grade::new(total, attendance.ceil() as usize);
 
-        println!("{:?},", record.get(index.id).expect("ID doesn't exist"));
-        println!("{:?}", grade.to_string());
+        println!(
+            "{:?}, {:?}",
+            record.get(index.id).expect("ID doesn't exist"),
+            grade.to_string()
+        );
         println!(
             "{:?}",
             record
