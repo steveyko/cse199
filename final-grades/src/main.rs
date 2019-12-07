@@ -105,9 +105,10 @@ fn main() -> Result<(), Box<dyn Error>> {
             .get(ATTENDANCE)
             .expect("Attendance doesn't exist.")
             .parse::<f32>()
-            .unwrap_or(0.0);
+            .unwrap_or(0.0)
+            .ceil() as usize;
 
-        let grade = Grade::new(total, attendance.ceil() as usize);
+        let grade = Grade::new(total, attendance);
 
         println!(
             "{}, {}, {}, {}, {}, {}",
