@@ -2,9 +2,13 @@
 //! This prints out final grades.
 //!
 
+mod grade;
+
+use grade::Grade;
+use preprocessing::clean_up;
 use std::collections::HashMap;
 use std::error::Error;
-use std::io;
+use std::io::{self, Stdin};
 
 const LAST_NAME: &str = "Last Name";
 const FIRST_NAME: &str = "First Name";
@@ -12,86 +16,22 @@ const TOTAL: &str = "Total";
 const ATTENDANCE: &str = "TH-Attendance";
 const ID: &str = "Student ID";
 
-const ATTENDANCE_TOTAL: usize = 26; // total attendance for the semester
-
-enum Grade {
-    A,
-    AMinus,
-    BPlus,
-    B,
-    BMinus,
-    CPlus,
-    C,
-    CMinus,
-    DPlus,
-    D,
-    F,
-}
-
-impl Grade {
-    fn new(total: f32, attendance: usize) -> Grade {
-        assert!(attendance <= ATTENDANCE_TOTAL);
-
-        let mut grade: Grade = match total {
-            x if x < 50.0 => Grade::F,
-            x if x < 58.0 => Grade::D,
-            x if x < 62.0 => Grade::DPlus,
-            x if x < 66.0 => Grade::CMinus,
-            x if x < 72.0 => Grade::C,
-            x if x < 76.0 => Grade::CPlus,
-            x if x < 80.0 => Grade::BMinus,
-            x if x < 84.0 => Grade::B,
-            x if x < 88.0 => Grade::BPlus,
-            x if x < 92.0 => Grade::AMinus,
-            _ => Grade::A,
-        };
-
-        let downgrade_by: usize = (ATTENDANCE_TOTAL - attendance) / 3;
-
-        for _ in 0..downgrade_by {
-            grade.downgrade();
-        }
-
-        grade
-    }
-
-    fn downgrade(&mut self) {
-        *self = match self {
-            Grade::A => Grade::AMinus,
-            Grade::AMinus => Grade::BPlus,
-            Grade::BPlus => Grade::B,
-            Grade::B => Grade::BMinus,
-            Grade::BMinus => Grade::CPlus,
-            Grade::CPlus => Grade::C,
-            Grade::C => Grade::CMinus,
-            Grade::CMinus => Grade::DPlus,
-            Grade::DPlus => Grade::D,
-            Grade::D => Grade::F,
-            Grade::F => Grade::F,
-        }
-    }
-
-    fn to_string(&self) -> &str {
-        match self {
-            Grade::A => "A",
-            Grade::AMinus => "A-",
-            Grade::BPlus => "B+",
-            Grade::B => "B",
-            Grade::BMinus => "B-",
-            Grade::CPlus => "C+",
-            Grade::C => "C",
-            Grade::CMinus => "C-",
-            Grade::DPlus => "D+",
-            Grade::D => "D",
-            Grade::F => "F",
-        }
-    }
-}
-
 type Record = HashMap<String, String>;
+
+fn clean_up_headers(mut rdr: csv::Reader<Stdin>) -> Result<(csv::Reader<Stdin>), Box<dyn Error>> {
+    let mut v: Vec<String> = Vec::new();
+    for field in rdr.headers()?.iter() {
+        v.push(clean_up(field.to_string()));
+    }
+    rdr.set_headers(csv::StringRecord::from(v));
+
+    Ok(rdr)
+}
 
 fn main() -> Result<(), Box<dyn Error>> {
     let mut rdr = csv::Reader::from_reader(io::stdin());
+
+    rdr = clean_up_headers(rdr)?;
 
     for result in rdr.deserialize() {
         let record: Record = result?;

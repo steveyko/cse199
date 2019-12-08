@@ -41,6 +41,7 @@ name = "final-grades"
 version = "0.1.0"
 dependencies = [
  "csv 1.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
+ "preprocessing 0.1.0",
 ]
 
 [[package]]
@@ -65,6 +66,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "libc 0.2.66 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "preprocessing"
+version = "0.1.0"
 
 [[package]]
 name = "regex-automata"

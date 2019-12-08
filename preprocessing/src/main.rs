@@ -3,6 +3,7 @@
 //! For example, "Total [Total Pts: up to 191.7 Score] |1263507" becomes "Total"
 //!
 
+use preprocessing::clean_up;
 use std::io::{self, BufRead, BufReader};
 
 fn main() {
@@ -11,18 +12,7 @@ fn main() {
     let mut input = String::new();
     let _n = bf.read_line(&mut input);
 
-    while let Some(n) = input.find('[') {
-        if let Some(m) = input.find(']') {
-            // -1 for a whitespace, +2 for ']' and a whitespace
-            input.drain((n - 1)..(m + 2));
-        }
-    }
-    while let Some(n) = input.find('|') {
-        // +8 for seven digits
-        input.drain(n..(n + 8));
-    }
-    input = input.trim().to_string();
-    println!("{}", input);
+    println!("{}", clean_up(input));
 
     for line in bf.lines() {
         if let Ok(input) = line {
