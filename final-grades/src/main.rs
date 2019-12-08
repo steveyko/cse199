@@ -18,7 +18,7 @@ const ID: &str = "Student ID";
 
 type Record = HashMap<String, String>;
 
-fn clean_up_headers(mut rdr: csv::Reader<Stdin>) -> Result<(csv::Reader<Stdin>), Box<dyn Error>> {
+fn clean_up_headers(mut rdr: csv::Reader<Stdin>) -> Result<csv::Reader<Stdin>, Box<dyn Error>> {
     let mut v: Vec<String> = Vec::new();
     for field in rdr.headers()?.iter() {
         v.push(clean_up(field.to_string()));
