@@ -29,9 +29,7 @@ fn clean_up_headers(mut rdr: csv::Reader<Stdin>) -> Result<csv::Reader<Stdin>, B
 }
 
 fn main() -> Result<(), Box<dyn Error>> {
-    let mut rdr = csv::Reader::from_reader(io::stdin());
-
-    rdr = clean_up_headers(rdr)?;
+    let mut rdr = clean_up_headers(csv::Reader::from_reader(io::stdin()))?;
 
     for result in rdr.deserialize() {
         let record: Record = result?;
