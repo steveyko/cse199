@@ -40,8 +40,12 @@ fn assert_point_range(record: &Record) {
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = env::args().collect();
-    assert!(args.len() == 2, "Please provide a TopHat total.");
+    assert!(
+        args.len() == 3,
+        "Please provide a TopHat total and bonus points."
+    );
     let tophat_total = &args[1].parse::<f32>().unwrap();
+    let bonus_points = &args[2].parse::<f32>().unwrap();
 
     let mut rdr = clean_up_headers(csv::Reader::from_reader(io::stdin()))?;
 
@@ -55,7 +59,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             .expect("Total doesn't exist.")
             .parse::<f32>()
             .unwrap_or(0.0);
-        let total = (total / (tophat_total + NON_TOPHAT_TOTAL) * 100.0).ceil();
+        let total = ((total + bonus_points) / (tophat_total + NON_TOPHAT_TOTAL) * 100.0).ceil();
 
         let attendance = record
             .get(Field::Attendance.as_str())
