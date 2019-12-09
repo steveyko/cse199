@@ -1,5 +1,5 @@
 //!
-//! This prints out final grades.
+//! This defines Grade enum.
 //!
 
 const ATTENDANCE_TOTAL: usize = 26; // total attendance for the semester
