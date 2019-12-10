@@ -2,19 +2,19 @@
 //! This defines Field enum.
 //!
 
-const LAST_NAME: &str = "Last Name";
-const FIRST_NAME: &str = "First Name";
-const USERNAME: &str = "Username";
-const STUDENT_ID: &str = "Student ID";
-const LAST_ACCESS: &str = "Last Access";
-const AVAILABILITY: &str = "Availability";
-const RECITATION: &str = "Recitation Section";
-const WEIGHTED: &str = "Weighted Total";
-const TOTAL: &str = "Total";
-const TOPHAT: &str = "Top Hat";
-const ATTENDANCE: &str = "TH-Attendance";
-const ATT: &str = "Attendance";
-const TIME: &str = "time of HW submission";
+const LAST_NAME: &'static str = "Last Name";
+const FIRST_NAME: &'static str = "First Name";
+const USERNAME: &'static str = "Username";
+const STUDENT_ID: &'static str = "Student ID";
+const LAST_ACCESS: &'static str = "Last Access";
+const AVAILABILITY: &'static str = "Availability";
+const RECITATION: &'static str = "Recitation Section";
+const WEIGHTED: &'static str = "Weighted Total";
+const TOTAL: &'static str = "Total";
+const TOPHAT: &'static str = "Top Hat";
+const ATTENDANCE: &'static str = "TH-Attendance";
+const ATT: &'static str = "Attendance";
+const TIME: &'static str = "time of HW submission";
 
 /*
  * Only the fields of interest
