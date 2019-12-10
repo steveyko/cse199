@@ -2,7 +2,7 @@
 //! This defines Grade enum.
 //!
 
-use crate::constants::ATTENDANCE_TOTAL;
+use crate::constants::ATTENDANCE_MAX;
 
 const A: &'static str = "A";
 const A_MINUS: &'static str = "A-";
@@ -32,7 +32,7 @@ pub enum Grade {
 
 impl Grade {
     pub fn new(total: f32, attendance: usize) -> Grade {
-        assert!(attendance <= ATTENDANCE_TOTAL);
+        assert!(attendance <= ATTENDANCE_MAX);
 
         let mut grade: Grade = match total {
             x if x < 50.0 => Grade::F,
@@ -48,7 +48,7 @@ impl Grade {
             _ => Grade::A,
         };
 
-        let downgrade_by: usize = (ATTENDANCE_TOTAL - attendance) / 3;
+        let downgrade_by: usize = (ATTENDANCE_MAX - attendance) / 3;
 
         for _ in 0..downgrade_by {
             grade.downgrade();

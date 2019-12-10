@@ -1,2 +1,2 @@
-pub const ATTENDANCE_TOTAL: usize = 26; // total attendance for the semester
-pub const NON_TOPHAT_TOTAL: f32 = 66.0; // total except TopHat points
+pub const ATTENDANCE_MAX: usize = 26; // max attendance for the semester
+pub const NON_TOPHAT_MAX: f32 = 66.0; // max except TopHat points

@@ -7,7 +7,7 @@ mod field;
 mod grade;
 mod student;
 
-use constants::NON_TOPHAT_TOTAL;
+use constants::NON_TOPHAT_MAX;
 use preprocessing::clean_up;
 use std::env;
 use std::error::Error;
@@ -35,10 +35,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         "Please provide a TopHat total and bonus points."
     );
 
-    let max_points = args[1].parse::<f32>().unwrap() + NON_TOPHAT_TOTAL;
+    let max_points = args[1].parse::<f32>().unwrap() + NON_TOPHAT_MAX;
     let bonus_points = args[2].parse::<f32>().unwrap();
-
-    println!("{} {}", max_points, bonus_points);
 
     let mut rdr = clean_up_headers(csv::Reader::from_reader(io::stdin()))?;
 
