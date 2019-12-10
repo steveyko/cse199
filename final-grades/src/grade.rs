@@ -2,7 +2,8 @@
 //! This defines Grade enum.
 //!
 
-const ATTENDANCE_TOTAL: usize = 26; // total attendance for the semester
+use crate::constants::ATTENDANCE_TOTAL;
+
 const A: &'static str = "A";
 const A_MINUS: &'static str = "A-";
 const B_PLUS: &'static str = "B+";

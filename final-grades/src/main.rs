@@ -2,18 +2,18 @@
 //! This prints out final grades.
 //!
 
+mod constants;
 mod field;
 mod grade;
 mod student;
 
+use constants::NON_TOPHAT_TOTAL;
 use preprocessing::clean_up;
 use std::env;
 use std::error::Error;
 use std::io::{self, Stdin};
 use student::Record;
 use student::Student;
-
-const NON_TOPHAT_TOTAL: f32 = 66.0;
 
 fn clean_up_headers(mut rdr: csv::Reader<Stdin>) -> Result<csv::Reader<Stdin>, Box<dyn Error>> {
     let mut v: Vec<String> = Vec::new();
