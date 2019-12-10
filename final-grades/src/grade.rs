@@ -3,6 +3,17 @@
 //!
 
 const ATTENDANCE_TOTAL: usize = 26; // total attendance for the semester
+const A: &'static str = "A";
+const A_MINUS: &'static str = "A-";
+const B_PLUS: &'static str = "B+";
+const B: &'static str = "B";
+const B_MINUS: &'static str = "B-";
+const C_PLUS: &'static str = "C+";
+const C: &'static str = "C";
+const C_MINUS: &'static str = "C-";
+const D_PLUS: &'static str = "D+";
+const D: &'static str = "D";
+const F: &'static str = "F";
 
 pub enum Grade {
     A,
@@ -61,19 +72,19 @@ impl Grade {
         }
     }
 
-    pub fn to_string(&self) -> &str {
+    pub fn as_str(&self) -> &'static str {
         match self {
-            Grade::A => "A",
-            Grade::AMinus => "A-",
-            Grade::BPlus => "B+",
-            Grade::B => "B",
-            Grade::BMinus => "B-",
-            Grade::CPlus => "C+",
-            Grade::C => "C",
-            Grade::CMinus => "C-",
-            Grade::DPlus => "D+",
-            Grade::D => "D",
-            Grade::F => "F",
+            Grade::A => A,
+            Grade::AMinus => A_MINUS,
+            Grade::BPlus => B_PLUS,
+            Grade::B => B,
+            Grade::BMinus => B_MINUS,
+            Grade::CPlus => C_PLUS,
+            Grade::C => C,
+            Grade::CMinus => C_MINUS,
+            Grade::DPlus => D_PLUS,
+            Grade::D => D,
+            Grade::F => F,
         }
     }
 }
