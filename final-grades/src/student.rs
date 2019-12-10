@@ -24,15 +24,19 @@ impl Student<'_> {
         let student_id = record
             .get(Field::StudentID.as_str())
             .expect("ID doesn't exist");
+
         let last_name = record.get(Field::LastName.as_str()).expect("No last name");
+
         let first_name = record
             .get(Field::FirstName.as_str())
             .expect("No first name");
+
         let total = record
             .get(Field::Total.as_str())
             .expect("Total doesn't exist.")
             .parse::<f32>()
             .unwrap_or(0.0);
+
         let attendance = record
             .get(Field::Attendance.as_str())
             .expect("Attendance doesn't exist.")

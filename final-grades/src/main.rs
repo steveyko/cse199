@@ -17,9 +17,11 @@ const NON_TOPHAT_TOTAL: f32 = 66.0;
 
 fn clean_up_headers(mut rdr: csv::Reader<Stdin>) -> Result<csv::Reader<Stdin>, Box<dyn Error>> {
     let mut v: Vec<String> = Vec::new();
+
     for field in rdr.headers()?.iter() {
         v.push(clean_up(field.to_string()));
     }
+
     rdr.set_headers(csv::StringRecord::from(v));
 
     Ok(rdr)
@@ -27,10 +29,12 @@ fn clean_up_headers(mut rdr: csv::Reader<Stdin>) -> Result<csv::Reader<Stdin>, B
 
 fn main() -> Result<(), Box<dyn Error>> {
     let args: Vec<String> = env::args().collect();
+
     assert!(
         args.len() == 3,
         "Please provide a TopHat total and bonus points."
     );
+
     let max_points = &args[1].parse::<f32>().unwrap() + NON_TOPHAT_TOTAL;
     let bonus_points = *&args[2].parse::<f32>().unwrap();
 
