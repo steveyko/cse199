@@ -9,3 +9,5 @@ edition = "2018"
 [dependencies]
 csv = "1.1"
 preprocessing = { path = "../preprocessing" }
+log = "0.4.8"
+env_logger = "0.7.1"

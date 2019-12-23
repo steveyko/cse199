@@ -4,17 +4,19 @@
 
 use crate::field::Field;
 use crate::grade::Grade;
+use log::debug;
 use std::collections::HashMap;
 
 pub type Record = HashMap<String, String>;
 
+#[derive(Debug)]
 pub struct Student<'a> {
     student_id: &'a str,
     grade: &'a str,
-    //last_name: &'a str,
-    //first_name: &'a str,
-    //total: f32,
-    //attendance: usize,
+    last_name: &'a str,
+    first_name: &'a str,
+    total: f32,
+    attendance: usize,
 }
 
 impl Student<'_> {
@@ -61,25 +63,17 @@ impl Student<'_> {
 
         Student {
             student_id,
-            //last_name,
-            //first_name,
-            //total,
-            //attendance,
+            last_name,
+            first_name,
+            total,
+            attendance,
             grade,
         }
     }
 
     pub fn to_string(&self) -> String {
-        //format!(
-        //    "{}, {}, {}, {}, {}, {}",
-        //    self.student_id,
-        //    self.grade,
-        //    self.last_name,
-        //    self.first_name,
-        //    self.total,
-        //    self.attendance
-        //)
-        format!("{},{}", self.student_id, self.grade,)
+        debug!("Student: {:#?}", self);
+        format!("{},{}", self.student_id, self.grade)
     }
 
     fn assert_point_range(record: &Record) {

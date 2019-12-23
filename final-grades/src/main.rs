@@ -8,6 +8,7 @@ mod grade;
 mod student;
 
 use constants::NON_TOPHAT_MAX;
+use env_logger;
 use preprocessing::clean_up;
 use std::env;
 use std::error::Error;
@@ -34,6 +35,8 @@ fn main() -> Result<(), Box<dyn Error>> {
         args.len() == 3,
         "Please provide a TopHat total and bonus points."
     );
+
+    env_logger::init();
 
     let max_points = args[1].parse::<f32>().unwrap() + NON_TOPHAT_MAX;
     let bonus_points = args[2].parse::<f32>().unwrap();
