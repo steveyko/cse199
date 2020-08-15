@@ -54,7 +54,6 @@ fn assign(people: &mut Vec<Person>, recitations: &mut Vec<Recitation>) -> Result
 
         // Reduce the availability for the person
         // Assign the person to the recitation
-        // Also update person info with the assigned recitation
         // Also update person info with overlapping recitations
         if let Some(person) = people.get_mut(index) {
             person.availability -= 1;
