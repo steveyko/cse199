@@ -1,6 +1,6 @@
 use csv;
 
-#[derive(Copy, Clone, PartialEq, Debug)]
+#[derive(Copy, Clone, PartialEq, Debug, Eq, Ord, PartialOrd)]
 pub enum Section {
     A1,
     A2,

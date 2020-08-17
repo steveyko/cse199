@@ -39,19 +39,25 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // Print out the recitation assignment for instructors
     println!("Instructors:\n");
     for recitation in &recitations {
-        println!("{}", (*recitation).instructor.as_ref().unwrap());
+        println!("{}", recitation.instructor.as_ref().unwrap());
     }
 
     // Print out the recitation assignment for TAs
     println!("\nTAs:\n");
     for recitation in &recitations {
-        println!("{}", (*recitation).tas.as_ref().unwrap().join(", "));
+        println!("{}", recitation.tas.as_ref().unwrap().join(", "));
     }
 
     Ok(())
 }
 
 fn assign(people: &mut Vec<Person>, recitations: &mut Vec<Recitation>) -> Result<(), String> {
+    use rand::seq::SliceRandom;
+    use rand::thread_rng;
+
+    let mut rng = thread_rng();
+
+    recitations.shuffle(&mut rng);
     for recitation in recitations.iter_mut() {
         let index = pick_rand_index(people, &recitation)?;
 
@@ -76,6 +82,7 @@ fn assign(people: &mut Vec<Person>, recitations: &mut Vec<Recitation>) -> Result
             panic!("person index out of bounds");
         }
     }
+    recitations.sort_by(|a, b| a.section.cmp(&b.section));
 
     Ok(())
 }
