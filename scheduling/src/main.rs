@@ -36,13 +36,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-    // Print out the recitation assignment
-    for recitation in recitations {
-        println!(
-            "{}, {}",
-            recitation.instructor.unwrap(),
-            recitation.tas.unwrap().join(",")
-        );
+    // Print out the recitation assignment for instructors
+    println!("Instructors:\n");
+    for recitation in &recitations {
+        println!("{}", (*recitation).instructor.as_ref().unwrap());
+    }
+
+    // Print out the recitation assignment for TAs
+    println!("\nTAs:\n");
+    for recitation in &recitations {
+        println!("{}", (*recitation).tas.as_ref().unwrap().join(", "));
     }
 
     Ok(())
