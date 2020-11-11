@@ -1,3 +1,7 @@
+extern crate clap;
+
+use clap::{App, Arg};
+
 mod class;
 mod staff;
 
@@ -5,13 +9,26 @@ use class::*;
 use staff::*;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let args: Vec<String> = std::env::args().collect();
-    if args.len() != 4 {
-        panic!("Need three arguments");
-    }
-    let instructor_file = args.get(1).unwrap();
-    let ta_file = args.get(2).unwrap();
-    let class_file = args.get(3).unwrap();
+    let matches = App::new("scheduler")
+        .arg(
+            Arg::with_name("instructors")
+                .help("CSV file that contains instructor schedule conflicts")
+                .required(true),
+        )
+        .arg(
+            Arg::with_name("TAs")
+                .help("CSV file that contains TA schedule conflicts")
+                .required(true),
+        )
+        .arg(
+            Arg::with_name("classes")
+                .help("CSV file that contains a class schedule")
+                .required(true),
+        )
+        .get_matches();
+    let instructor_file = matches.value_of("instructors").unwrap();
+    let ta_file = matches.value_of("TAs").unwrap();
+    let class_file = matches.value_of("classes").unwrap();
 
     // Assign instructors
     let mut recitations;
