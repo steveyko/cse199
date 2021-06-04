@@ -101,7 +101,7 @@ impl Recitation {
                 .trim();
             let section = match Section::parse(section) {
                 Ok(f) => f,
-                Err(e) => panic!(e),
+                Err(e) => panic!("{}", e),
             };
             let time = record.get(1).expect("Wrong CSV format for time").trim();
             let time = time.to_string();

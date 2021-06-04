@@ -30,7 +30,7 @@ impl Person {
         for conflict in conflicts.split(' ') {
             match Section::parse(conflict.trim()) {
                 Ok(f) => sections.push(f),
-                Err(e) => panic!(e),
+                Err(e) => panic!("{}", e),
             };
         }
 
